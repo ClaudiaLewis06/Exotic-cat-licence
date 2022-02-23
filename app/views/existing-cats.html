@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <form class="form" action="/existing-cats-answer" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+  {{ govukRadios({
+    idPrefix: "how-many-cats",
+    name: "how-many-cats",
+    fieldset: {
+      legend: {
+        text: "How many normal cats do you own?",
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--l"
+      }
+    },
+    items: [
+    {
+  value: "3 or more",
+  text: "3 or more",
+  checked: checked("how-many-cats", "3 or more")
+},
+{
+  value: "1 or 2",
+  text: "1 or 2",
+  checked: checked("how-many-cats", "1 or 2")
+},
+{
+  value: "None - I hate cats",
+  text: "None - I hate cats",
+  checked: checked("how-many-cats", "None - I hate cats")
+}
+    ]
+  }) }}
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
